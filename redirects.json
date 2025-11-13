@@ -1,0 +1,8 @@
+{
+  "001": "https://example.com/001",
+  "002": "https://example.com/002",
+  "003": "https://example.com/003",
+  ...
+  "100": "https://example.com/100",
+  "default": "https://example.com/"
+}
