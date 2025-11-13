@@ -6,15 +6,16 @@
     <script>
       async function redirect() {
         try {
-          const res = await fetch('/redirects.json');
+          // تحميل ملف JSON من نفس المجلد
+          const res = await fetch('redirects.json');
           const map = await res.json();
 
-          // قراءة الجزء الأخير من الرابط
-          const path = window.location.pathname.replace(/^\/|\/$/g, '').split('/');
-          const key = path[path.length - 1];
+          // قراءة قيمة ?to= من الرابط
+          const params = new URLSearchParams(window.location.search);
+          const key = params.get('to');
 
           // تحديد الوجهة
-          const dest = map[key] || map["default"] || "https://example.com/";
+          const dest = (key && map[key]) ? map[key] : map["default"];
 
           window.location.replace(dest);
         } catch (e) {
